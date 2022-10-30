@@ -33,7 +33,7 @@
             <h4 style="text-align: center;font-style: oblique; font-weight: bolder;">Meus Grupos</h4>
             @foreach ($meus as $g)
                 <div style="display: flex; justify-content: space-between;margin-bottom: 20px;">
-                    <div style="display: flex; cursor: pointer" onclick="window.location='{{ url('/grupil') }}'">
+                    <div style="display: flex; cursor: pointer" onclick="window.location='{{ url('/grupil/'.$g->id.'') }}'">
                         <img src="/img/perfis/{{ $g->perfil }}"
                             style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
                         <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>

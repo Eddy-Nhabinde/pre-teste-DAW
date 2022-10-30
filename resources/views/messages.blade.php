@@ -24,14 +24,17 @@
             <h4 style="font-style: oblique; font-weight: bolder; margin-left: 25px; font-size: 17px;">Lista de Grupos
             </h4>
             <hr />
-            <div style="display: flex;">
-                <img src="/img/jiraya.webp" style="width: 50px; height: 50px; border-radius: 100px; margin-left: 20px" />
-                <h4 style="margin-left: 20px;">Anime Lovers</h4>
-            </div>
+            @foreach ($grupos as $g)
+                <div style="display: flex; margin-bottom: 20px; cursor: pointer" onclick="window.location='{{ url('/grupil/'.$g->id.'') }}'">
+                    <img src="/img/perfis/{{ $g->perfil }}"
+                        style="width: 50px; height: 50px; border-radius: 100px; margin-left: 20px" />
+                    <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
+                </div>
+            @endforeach
         </div>
         <div>
             <div style="display: flex; justify-content: space-between; margin-bottom: -10px;">
-                <h4 style="font-weight: bolder; margin-left: 25px; font-size: 17px; text-align: center">Anime Lovers</h4>
+                <h4 style="font-weight: bolder; margin-left: 25px; font-size: 17px; text-align: center; color: blue">{{$nome}}</h4>
                 <div class="dropdown">
                     <button class="btn" type="button" id="dropdownMenuButton" style="border: none;"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,66 +48,18 @@
             </div>
             <hr />
             <div style="overflow: hidden">
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
+                @foreach ($mensages as $m)
+                    <div class="card w-75" style="margin: 10px;">
+                        <div class="card-header">
+                            {{ $m->name }}
+                        </div>
+                        <blockquote class="blockquote mb-0" style=" padding: 5px">
+                            <p>{{ $m->mensagem }}</p>
+                            <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">{{ $m->created_at }}
+                            </footer>
+                        </blockquote>
                     </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
-                    </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
-                    </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
-                    </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
-                    </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card w-75" style="margin: 10px;">
-                    <div class="card-header">
-                        Biote Ngovene
-                    </div>
-                    <blockquote class="blockquote mb-0" style=" padding: 5px">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer" style="font-size: 14px; margin-top: 10px">17/02/2023 17:04
-                        </footer>
-                    </blockquote>
-                </div>
+                @endforeach
                 <div class="child">
                     <textarea class="form-control" id="exampleFormControlTextarea1" style="box-shadow: none; border: solid black 1px;"
                         placeholder="Escreva Uma Mensagem" rows="3"></textarea>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GruposController;
+use App\Http\Controllers\MensagensController;
 use App\Http\Controllers\UserGroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', GruposController::class . '@getAll');
 
-Route::get('/grupil', function () {
-    return view('messages');
-});
+Route::get('/grupil/{id}', MensagensController::class . '@getAll');
+
+// return view('messages');
 
 route::get('/join-group/{id}', UserGroupController::class . '@join');
 

@@ -34,11 +34,11 @@ class GruposController extends Controller
     }
 
 
-    function getAll()
+    function getAll($meus = 0)
     {
         $grupos = DB::table('grupos')
             ->leftjoin('user_groups', 'user_groups.grupos_id', '=', 'grupos.id')
-            ->select('grupos.*', 'user_groups.user_id','user_groups.id as enroll_id')
+            ->select('grupos.*', 'user_groups.user_id', 'user_groups.id as enroll_id')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -58,6 +58,10 @@ class GruposController extends Controller
             $counter++;
         }
 
-        return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
+        if ($meus == 1) {
+            return $mine;
+        } else {
+            return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
+        }
     }
 }
