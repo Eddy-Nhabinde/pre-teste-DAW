@@ -1,0 +1,36 @@
+<?php
+
+use App\Models\grupos;
+use App\Models\User;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('mensagens', function (Blueprint $table) {
+            $table->id();
+            $table->text('mensagem');
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(grupos::class);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('mensagens');
+    }
+};

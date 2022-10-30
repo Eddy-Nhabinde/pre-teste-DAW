@@ -17,7 +17,16 @@ Route::get('/', function () {
     return view('HomePage');
 });
 
-
 Route::get('/grupil', function () {
     return view('messages');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('HomePage');
+    })->name('inicio');
 });
