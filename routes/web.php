@@ -23,6 +23,8 @@ Route::get('/grupil', function () {
 
 route::get('/join-group/{id}', UserGroupController::class . '@join');
 
+route::get('/leave-group/{id}', UserGroupController::class . '@leave');
+
 route::post('/new-group', GruposController::class . '@newGroup');
 
 Route::middleware([

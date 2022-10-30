@@ -18,4 +18,11 @@ class UserGroupController extends Controller
         $ug->save();
         return redirect()->back();
     }
+
+    function leave($id)
+    {
+        $myGroupEnrollment = userGroup::find($id);
+        $myGroupEnrollment->delete();
+        return redirect()->back();
+    }
 }

@@ -37,12 +37,27 @@ class GruposController extends Controller
     function getAll()
     {
         $grupos = DB::table('grupos')
-            ->join('user_groups', 'user_groups.grupos_id', '=', 'grupos.id')
-            ->select('grupos.*')
+            ->leftjoin('user_groups', 'user_groups.grupos_id', '=', 'grupos.id')
+            ->select('grupos.*', 'user_groups.user_id','user_groups.id as enroll_id')
             ->orderBy('created_at', 'desc')
             ->get();
-            dd($grupos);
 
-        return view('HomePage', ["grupos" => $grupos]);
+        $mine = [];
+        $nomes = [];
+        $counter = 0;
+        foreach ($grupos as $grup) {
+            if ($grup->user_id == Auth::user()->id) {
+                array_push($mine, $grup);
+                array_push($nomes, $grup->nome);
+            }
+            foreach ($nomes as $nome) {
+                if ($nome == $grup->nome) {
+                    $grupos->forget($counter);
+                }
+            }
+            $counter++;
+        }
+
+        return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
     }
 }
