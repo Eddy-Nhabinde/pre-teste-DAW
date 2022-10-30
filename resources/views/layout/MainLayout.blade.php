@@ -61,9 +61,31 @@
     </header>
 
     <div class="row" style="overflow: hidden;">
+        @if (session()->has('erro'))
+            <div style="margin-top: 10px; display:flex; justify-content:center; margin-bottom:10px; margin-bottom:10px">
+                <div id="hide-message" class="alert alert-warning alert-dismissible fade show" role="alert"
+                    style="width:50%;">
+                    {{ session()->get('erro') }}
+                </div>
+            </div>
+        @else
+            @if (session()->has('sucesso'))
+                <div style="margin-top: 10px; display:flex; justify-content:center; margin-bottom:10px; margin-bottom:10px">
+                    <div id="hide-message" class="alert alert-success alert-dismissible fade show" role="alert"
+                        style="width:60%;">
+                        {{ session()->get('sucesso') }}
+                    </div>
+                </div>
+            @endif
+        @endif
         @yield('content')
     </div>
 
+    <script>
+        $(".alert").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+    </script>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

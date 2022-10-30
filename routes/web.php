@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GruposController;
+use App\Http\Controllers\UserGroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('HomePage');
-});
+Route::get('/', GruposController::class . '@getAll');
 
 Route::get('/grupil', function () {
     return view('messages');
 });
+
+route::get('/join-group/{id}', UserGroupController::class . '@join');
+
+route::post('/new-group', GruposController::class . '@newGroup');
 
 Route::middleware([
     'auth:sanctum',
