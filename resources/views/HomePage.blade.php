@@ -8,7 +8,7 @@
         <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Criar Grupo</button>
     </div>
     <div style="display: grid;grid-template-columns: 50% 50%">
-        <div style="background-color: rgb(147, 191, 228); min-height: 60vh; border-right: solid 1px rgb(150, 150, 150);">
+        <div style="background-color: rgb(147, 191, 228); height: 60vh; border-right: solid 1px rgba(136, 136, 136, 0.664);">
             <h4 style="text-align: center; font-style: oblique; font-weight: bolder;">Grupos Disponiveis</h4>
             <div style="display: flex; justify-content: space-between">
                 <div style="display: flex;">
@@ -22,13 +22,13 @@
             </div>
         </div>
 
-        <div style="background-color: rgb(147, 191, 228); min-height: 60vh">
+        <div style="background-color: rgb(147, 191, 228); height: 60vh;">
             <h4 style="text-align: center;font-style: oblique; font-weight: bolder;">Meus Grupos</h4>
             <div style="display: flex; justify-content: space-between">
-                <div style="display: flex;">
+                <div style="display: flex; cursor: pointer" onclick="window.location='{{url('/grupil')}}'">
                     <img src="/img/jiraya.webp"
                         style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
-                    <h4 style="margin-left: 20px;">HotakuLand</h4>
+                    <h4 style="margin-left: 20px;">Anime Lovers</h4>
                 </div>
                 <button class="btn btn-outline-primary" style="height: 40px; margin-top: 5px;margin-right: 30px;">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>

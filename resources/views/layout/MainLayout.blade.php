@@ -37,11 +37,12 @@
 
 </head>
 
-<body class="antialiased">
+<body style="overflow-y: hidden; overflow-x: hidden;">
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: blue;">
-            <a  style="margin-left: 20px" class="navbar-brand" href="#"><i class="fa-regular fa-comments"></i>&nbsp;Chat-Eddy</a>
+        <nav class="navbar navbar-expand-lg" style="background:  rgba(147, 192, 228, 0.226);">
+            <a style="margin-left: 20px" class="navbar-brand" href="#"><i
+                    class="fa-regular fa-comments"></i>&nbsp;Chat-Eddy</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,7 +50,7 @@
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;">
                     <input class="form-control mr-sm-2" type="search" placeholder="Pesquise por grupos">
@@ -59,11 +60,9 @@
         </nav>
     </header>
 
-    <main>
-        <div class="row">
-            @yield('content')
-        </div>
-    </main>
+    <div class="row" style="overflow: hidden;">
+        @yield('content')
+    </div>
 
 </body>
 

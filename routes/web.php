@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('HomePage');
 });
+
+
+Route::get('/grupil', function () {
+    return view('messages');
+});
