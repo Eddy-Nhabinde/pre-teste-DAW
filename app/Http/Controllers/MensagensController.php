@@ -14,7 +14,7 @@ class MensagensController extends Controller
         $mensagens = DB::table('mensagens')
             ->join('grupos', 'grupos.id', '=', 'mensagens.grupos_id')
             ->join('users', 'users.id', '=', 'mensagens.user_id')
-            ->select('mensagens.*', 'users.name', 'grupos.nome')
+            ->select('mensagens.*', 'users.name', 'grupos.nome','users.id as uid')
             ->where('grupos.id', $id)
             ->get();
 

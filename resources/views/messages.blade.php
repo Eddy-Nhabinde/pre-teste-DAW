@@ -53,8 +53,8 @@
             <hr />
             <div style="overflow: hidden">
                 @foreach ($mensages as $m)
-                    <div class="card w-75" style="margin: 10px;">
-                        <div class="card-header">
+                    <div id="div{{ $m->created_at }}" class="card w-75" style="margin: 10px;">
+                        <div style="text-transform: capitalize;" class="card-header">
                             {{ $m->name }}
                         </div>
                         <blockquote class="blockquote mb-0" style=" padding: 5px">
@@ -63,11 +63,17 @@
                             </footer>
                         </blockquote>
                     </div>
+
+                    @if ($m->uid == @Auth::user()->id)
+                        <script>
+                            document.getElementById('div{{ $m->created_at }}').style.marginLeft = 'auto'
+                        </script>
+                    @endif
                 @endforeach
-                <form class="child" method="POST" action="/message-send/{{$g_id}}">
+                <form class="child" method="POST" action="/message-send/{{ $g_id }}">
                     @csrf
                     <textarea class="form-control" id="exampleFormControlTextarea1" style="box-shadow: none; border: solid black 1px;"
-                        placeholder="Escreva Uma Mensagem" rows="3" name="text" ></textarea>
+                        placeholder="Escreva Uma Mensagem" rows="3" name="text"></textarea>
                     <button class="btn btn-primary" type="submit"
                         style="margin-left: 10px;height: 50px; margin-right: 10px; margin-top: 15px"><i
                             class="fa-solid fa-paper-plane"></i>Enviar</button>
