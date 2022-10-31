@@ -12,39 +12,44 @@
     <div style="display: grid;grid-template-columns: 50% 50%">
         <div style="background-color: rgb(147, 191, 228); height: 60vh; border-right: solid 1px rgba(136, 136, 136, 0.664);">
             <h4 style="text-align: center; font-style: oblique; font-weight: bolder;">Grupos Disponiveis</h4>
-            @foreach ($grupos as $g)
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                    <div style="display: flex;">
-                        <img src="/img/perfis/{{ $g->perfil }}"
-                            style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
-                        <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
+            @if (isset($grupos))
+                @foreach ($grupos as $g)
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="display: flex;">
+                            <img src="/img/perfis/{{ $g->perfil }}"
+                                style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
+                            <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
+                        </div>
+                        <a href="/join-group/{{ $g->id }}" class="btn btn-success"
+                            style="height: 40px; margin-top: 5px;margin-right: 30px;">
+                            <i class="fa-solid fa-angles-right"></i>
+                            Juntar-se
+                        </a>
                     </div>
-                    <a href="/join-group/{{ $g->id }}" class="btn btn-success"
-                        style="height: 40px; margin-top: 5px;margin-right: 30px;">
-                        <i class="fa-solid fa-angles-right"></i>
-                        Juntar-se
-                    </a>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
 
         </div>
 
         <div style="background-color: rgb(147, 191, 228); height: 60vh;">
             <h4 style="text-align: center;font-style: oblique; font-weight: bolder;">Meus Grupos</h4>
-            @foreach ($meus as $g)
-                <div style="display: flex; justify-content: space-between;margin-bottom: 20px;">
-                    <div style="display: flex; cursor: pointer" onclick="window.location='{{ url('/grupil/'.$g->id.'') }}'">
-                        <img src="/img/perfis/{{ $g->perfil }}"
-                            style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
-                        <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
+            @if (isset($meus))
+                @foreach ($meus as $g)
+                    <div style="display: flex; justify-content: space-between;margin-bottom: 20px;">
+                        <div style="display: flex; cursor: pointer"
+                            onclick="window.location='{{ url('/grupil/' . $g->id . '') }}'">
+                            <img src="/img/perfis/{{ $g->perfil }}"
+                                style="width: 50px; height: 50px; border-radius: 100px; margin-left: 30px" />
+                            <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
+                        </div>
+                        <a href="/leave-group/{{ $g->enroll_id }}" class="btn btn-success"
+                            style="height: 40px; margin-top: 5px;margin-right: 30px;">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Sair
+                        </a>
                     </div>
-                    <a href="/leave-group/{{ $g->enroll_id }}" class="btn btn-success"
-                        style="height: 40px; margin-top: 5px;margin-right: 30px;">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        Sair
-                    </a>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
 

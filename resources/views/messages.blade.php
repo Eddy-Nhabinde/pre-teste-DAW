@@ -25,7 +25,8 @@
             </h4>
             <hr />
             @foreach ($grupos as $g)
-                <div style="display: flex; margin-bottom: 20px; cursor: pointer" onclick="window.location='{{ url('/grupil/'.$g->id.'') }}'">
+                <div style="display: flex; margin-bottom: 20px; cursor: pointer"
+                    onclick="window.location='{{ url('/grupil/' . $g->id . '') }}'">
                     <img src="/img/perfis/{{ $g->perfil }}"
                         style="width: 50px; height: 50px; border-radius: 100px; margin-left: 20px" />
                     <h4 style="margin-left: 20px;">{{ $g->nome }}</h4>
@@ -34,7 +35,8 @@
         </div>
         <div>
             <div style="display: flex; justify-content: space-between; margin-bottom: -10px;">
-                <h4 style="font-weight: bolder; margin-left: 25px; font-size: 17px; text-align: center; color: blue">{{$nome}}</h4>
+                <h4 style="font-weight: bolder; margin-left: 25px; font-size: 17px; text-align: center; color: blue">
+                    {{ $nome }}</h4>
                 <div class="dropdown">
                     <button class="btn" type="button" id="dropdownMenuButton" style="border: none;"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +44,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-right: 30px">
                         <a class="dropdown-item" href="#">Sair Do Grupo</a>
-                        <a class="dropdown-item" href="#">Ver Membros</a>
+                        <button data-toggle="modal" class="dropdown-item" data-target="#exampleModalCenter"
+                            style="border: none; box-shadow: none;outline: none;">
+                            Ver Membros</button>
                     </div>
                 </div>
             </div>
@@ -60,15 +64,35 @@
                         </blockquote>
                     </div>
                 @endforeach
-                <div class="child">
+                <form class="child" method="POST" action="/message-send/{{$g_id}}">
+                    @csrf
                     <textarea class="form-control" id="exampleFormControlTextarea1" style="box-shadow: none; border: solid black 1px;"
-                        placeholder="Escreva Uma Mensagem" rows="3"></textarea>
-                    <button class="btn btn-primary"
+                        placeholder="Escreva Uma Mensagem" rows="3" name="text" ></textarea>
+                    <button class="btn btn-primary" type="submit"
                         style="margin-left: 10px;height: 50px; margin-right: 10px; margin-top: 15px"><i
                             class="fa-solid fa-paper-plane"></i>Enviar</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">Criando um novo grupo</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @foreach ($menbros as $m)
+                    <div style="display: flex; justify-content: space-evenly; margin-right: 120px;">
+                        <h4 style="text-transform: capitalize;">{{ $m->name }}</h4>
+                        <h4>{{ $m->email }}</h4>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
