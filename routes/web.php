@@ -22,6 +22,8 @@ Route::get('/grupil/{id}', MensagensController::class . '@getAll');
 
 // return view('messages');
 
+route::post('/search-groups', GruposController::class . '@getThis');
+
 route::post('message-send/{id}', MensagensController::class . '@send');
 
 route::get('/join-group/{id}', UserGroupController::class . '@join');

@@ -52,9 +52,13 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquise por grupos">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;" method="POST"
+                    action="/search-groups">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" name="pesquisa"
+                        placeholder="Pesquise por grupos">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                    <a style="margin-left: 10px;" href="/" class="btn btn-primary my-2 my-sm-0" >Todos</a>
                 </form>
             </div>
         </nav>
@@ -70,7 +74,8 @@
             </div>
         @else
             @if (session()->has('sucesso'))
-                <div style="margin-top: 10px; display:flex; justify-content:center; margin-bottom:10px; margin-bottom:10px">
+                <div
+                    style="margin-top: 10px; display:flex; justify-content:center; margin-bottom:10px; margin-bottom:10px">
                     <div id="hide-message" class="alert alert-success alert-dismissible fade show" role="alert"
                         style="width:60%;">
                         {{ session()->get('sucesso') }}

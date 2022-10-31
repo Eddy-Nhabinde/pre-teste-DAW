@@ -64,4 +64,26 @@ class GruposController extends Controller
             return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
         }
     }
+
+    function getThis(Request $request)
+    {
+        $grupal = DB::table('grupos')
+            ->where('nome', 'like', $request->pesquisa . '%')
+            ->get();
+
+
+        $meus = $this->getAll(1);
+
+        $counter = 0;
+        foreach ($grupal as $g) {
+            foreach ($meus as $meu) {
+                if ($g->nome == $meu->nome) {
+                    $grupal->forget($counter);
+                }
+            }
+            $counter++;
+        }
+        
+        return view('HomePage', ["grupos" => $grupal, "meus" => $meus]);
+    }
 }
