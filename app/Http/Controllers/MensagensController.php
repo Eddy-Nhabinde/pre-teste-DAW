@@ -14,7 +14,7 @@ class MensagensController extends Controller
         $mensagens = DB::table('mensagens')
             ->join('grupos', 'grupos.id', '=', 'mensagens.grupos_id')
             ->join('users', 'users.id', '=', 'mensagens.user_id')
-            ->select('mensagens.*', 'users.name', 'grupos.nome','users.id as uid')
+            ->select('mensagens.*', 'users.name', 'grupos.nome', 'users.id as uid')
             ->where('grupos.id', $id)
             ->get();
 
@@ -30,10 +30,15 @@ class MensagensController extends Controller
             ->where('grupos.id', $id)
             ->get();
 
+        $users = DB::table('users')
+            ->select('users.*')
+            ->where('id', Auth::user()->id)
+            ->get();
+
         $controller = new GruposController();
         $meus_grupos = $controller->getAll(1);
 
-        return view('messages', ["mensages" => $mensagens, "grupos" => $meus_grupos, "nome" => $nome[0]->nome, "menbros" => $menbros, "g_id" => $id]);
+        return view('messages', ["mensages" => $mensagens, "grupos" => $meus_grupos, "nome" => $nome[0]->nome, "menbros" => $menbros, "g_id" => $id, "user" => $users]);
     }
 
 
@@ -45,6 +50,6 @@ class MensagensController extends Controller
         $mensagens->grupos_id = $id;
 
         $mensagens->save();
-        return redirect('/grupil/'.$id);
+        return redirect('/grupil/' . $id);
     }
 }

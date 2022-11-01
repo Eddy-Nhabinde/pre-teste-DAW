@@ -52,7 +52,7 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;" method="POST"
+                <form class="form-inline my-2 my-lg-0" style="margin-right: 10px;" method="POST"
                     action="/search-groups">
                     @csrf
                     <input class="form-control mr-sm-2" type="search" name="pesquisa"
@@ -60,10 +60,12 @@
                     <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
                     <a style="margin-left: 10px;" href="/" class="btn btn-primary my-2 my-sm-0">Todos</a>
                 </form>
-                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;" method="POST"
-                    action="/logout">
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModnter"
+                    style="margin-right: 20px;">
+                    Minha Conta</button>
+                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;" method="POST" action="/logout">
                     @csrf
-                  <a href="/logout" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
+                    <a href="/logout" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                 </form>
             </div>
         </nav>
@@ -89,6 +91,25 @@
             @endif
         @endif
         @yield('content')
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModnter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">Minha Conta</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="margin-left: 20px;">
+                    <h4 style="font-weight: bold;" >Nome: {{ $user[0]->name }}</h4>
+                    <h4 style="font-weight: bold;">Email: {{ $user[0]->email }}</h4>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>

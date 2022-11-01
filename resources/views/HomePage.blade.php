@@ -4,7 +4,7 @@
     <div
         style="width: 100%; display: flex; justify-content: center;flex-direction: column; 
                min-height: 40vh;background: lemonchiffon;align-items: center; margin-top: -20px;">
-        <h1 style="font-style: italic">Seja bem-vindo ao ChatEddy</h1>
+        <h1 style="font-style: italic">Seja bem-vindo ao Chat-Eddy</h1>
         <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-plus"></i>
             Criar Grupo</button>
     </div>

@@ -42,6 +42,11 @@ class GruposController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $user = DB::table('users')
+            ->select('users.*')
+            ->where('id', Auth::user()->id)
+            ->get();
+
         $mine = [];
         $nomes = [];
         $counter = 0;
@@ -62,7 +67,7 @@ class GruposController extends Controller
             if ($meus == 1) {
                 return $mine;
             } else {
-                return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
+                return view('HomePage', ["grupos" => $grupos, "meus" => $mine, "user" => $user]);
             }
         } else {
             return redirect('/login');

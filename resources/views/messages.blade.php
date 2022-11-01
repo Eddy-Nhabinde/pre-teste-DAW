@@ -56,7 +56,7 @@
                 </div>
             </div>
             <hr />
-            <div style="overflow: hidden">
+            <div style="margin-bottom: 90px;">
                 @if (isset($grupos))
                     @foreach ($mensages as $m)
                         <div id="div{{ $m->created_at }}" class="card w-75" style="margin: 10px;">
@@ -95,16 +95,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLongTitle">Criando um novo grupo</h4>
+                    <h4 class="modal-title" id="exampleModalLongTitle">Membros do {{ $nome }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 @foreach ($menbros as $m)
-                    <div style="display: flex; justify-content: space-evenly; margin-right: 120px;">
-                        <h4 style="text-transform: capitalize;">{{ $m->name }}</h4>
-                        <h4>{{ $m->email }}</h4>
-                    </div>
+                    <h4 style="text-transform: capitalize; margin-left: 20px; font-weight: bold">{{ $m->name }}</h4>
                 @endforeach
             </div>
         </div>
