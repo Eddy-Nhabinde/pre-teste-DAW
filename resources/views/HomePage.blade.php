@@ -10,7 +10,7 @@
     </div>
     {{-- {{Auth::user()->id}} --}}
     <div style="display: grid;grid-template-columns: 50% 50%">
-        <div style="background-color: rgb(147, 191, 228); height: 60vh; border-right: solid 1px rgba(136, 136, 136, 0.664);">
+        <div style="background-color: rgb(147, 191, 228); min-height: 60vh; border-right: solid 1px rgba(136, 136, 136, 0.664);">
             <h4 style="text-align: center; font-style: oblique; font-weight: bolder;">Grupos Disponiveis</h4>
             @if (isset($grupos))
                 @foreach ($grupos as $g)
@@ -28,10 +28,9 @@
                     </div>
                 @endforeach
             @endif
-
         </div>
 
-        <div style="background-color: rgb(147, 191, 228); height: 60vh;">
+        <div style="background-color: rgb(147, 191, 228); min-height: 60vh;">
             <h4 style="text-align: center;font-style: oblique; font-weight: bolder;">Meus Grupos</h4>
             @if (isset($meus))
                 @foreach ($meus as $g)

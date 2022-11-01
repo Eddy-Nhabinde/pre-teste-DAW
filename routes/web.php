@@ -20,8 +20,6 @@ Route::get('/', GruposController::class . '@getAll');
 
 Route::get('/grupil/{id}', MensagensController::class . '@getAll');
 
-// return view('messages');
-
 route::post('/search-groups', GruposController::class . '@getThis');
 
 route::post('message-send/{id}', MensagensController::class . '@send');
@@ -37,7 +35,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('HomePage');
-    })->name('inicio');
+    Route::get('/', GruposController::class . '@getAll');
 });

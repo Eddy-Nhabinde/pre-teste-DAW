@@ -58,7 +58,12 @@
                     <input class="form-control mr-sm-2" type="search" name="pesquisa"
                         placeholder="Pesquise por grupos">
                     <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-                    <a style="margin-left: 10px;" href="/" class="btn btn-primary my-2 my-sm-0" >Todos</a>
+                    <a style="margin-left: 10px;" href="/" class="btn btn-primary my-2 my-sm-0">Todos</a>
+                </form>
+                <form class="form-inline my-2 my-lg-0" style="margin-right: 20px;" method="POST"
+                    action="/logout">
+                    @csrf
+                  <a href="/logout" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
                 </form>
             </div>
         </nav>

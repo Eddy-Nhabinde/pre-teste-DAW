@@ -45,23 +45,27 @@ class GruposController extends Controller
         $mine = [];
         $nomes = [];
         $counter = 0;
-        foreach ($grupos as $grup) {
-            if ($grup->user_id == Auth::user()->id) {
-                array_push($mine, $grup);
-                array_push($nomes, $grup->nome);
-            }
-            foreach ($nomes as $nome) {
-                if ($nome == $grup->nome) {
-                    $grupos->forget($counter);
+        if (Auth::check()) {
+            foreach ($grupos as $grup) {
+                if ($grup->user_id == Auth::user()->id) {
+                    array_push($mine, $grup);
+                    array_push($nomes, $grup->nome);
                 }
+                foreach ($nomes as $nome) {
+                    if ($nome == $grup->nome) {
+                        $grupos->forget($counter);
+                    }
+                }
+                $counter++;
             }
-            $counter++;
-        }
 
-        if ($meus == 1) {
-            return $mine;
+            if ($meus == 1) {
+                return $mine;
+            } else {
+                return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
+            }
         } else {
-            return view('HomePage', ["grupos" => $grupos, "meus" => $mine]);
+            return redirect('/login');
         }
     }
 
@@ -83,7 +87,7 @@ class GruposController extends Controller
             }
             $counter++;
         }
-        
+
         return view('HomePage', ["grupos" => $grupal, "meus" => $meus]);
     }
 }
